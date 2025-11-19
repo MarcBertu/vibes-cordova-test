@@ -1,6 +1,6 @@
 package com.vibes.push.cordova.plugin;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.text.FieldPosition;
 import java.text.ParsePosition;
