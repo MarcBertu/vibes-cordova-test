@@ -23,13 +23,11 @@ import android.content.Context;
 import android.content.Intent;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.installations.FirebaseInstallations;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -116,7 +114,7 @@ public class VibesPlugin extends CordovaPlugin {
             SharedPrefsManager prefsManager = new SharedPrefsManager(context);
             String pushToken = prefsManager.getStringData(FMS.TOKEN_KEY);
             if (pushToken == null) {
-                FirebaseInstanceId.getInstance().getInstanceId()
+                FirebaseInstallations.getId()
                         .addOnSuccessListener(
                                 new OnSuccessListener<InstanceIdResult>() {
                                     @Override
@@ -318,7 +316,7 @@ public class VibesPlugin extends CordovaPlugin {
 
     private void initializeToken() {
         Log.d(TAG, "Triggering FirebaseInstanceId to generate Firebase token");
-        FirebaseInstanceId.getInstance().getInstanceId()
+        FirebaseInstallations.getId()
                 .addOnSuccessListener(
                         new OnSuccessListener<InstanceIdResult>() {
                             @Override
