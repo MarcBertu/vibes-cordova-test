@@ -26,8 +26,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.iid.InstanceIdResult;
-import com.google.firebase.installations.FirebaseInstallations;
+import com.google.firebase.installations.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -114,12 +114,12 @@ public class VibesPlugin extends CordovaPlugin {
             SharedPrefsManager prefsManager = new SharedPrefsManager(context);
             String pushToken = prefsManager.getStringData(FMS.TOKEN_KEY);
             if (pushToken == null) {
-                FirebaseInstallations.getInstance().getId()
+                FirebaseMessaging.getInstance().getToken()
                         .addOnSuccessListener(
-                                new OnSuccessListener<InstanceIdResult>() {
+                                new OnSuccessListener<String>() {
                                     @Override
-                                    public void onSuccess(InstanceIdResult instanceIdResult) {
-                                        String instanceToken = instanceIdResult.getToken();
+                                    public void onSuccess(String instanceIdResult) {
+                                        String instanceToken = instanceIdResult;
                                         if (instanceToken == null) {
                                             callback.error("No push token available for registration yet");
                                         } else {
@@ -316,12 +316,12 @@ public class VibesPlugin extends CordovaPlugin {
 
     private void initializeToken() {
         Log.d(TAG, "Triggering FirebaseInstanceId to generate Firebase token");
-        FirebaseInstallations.getInstance().getId()
+        FirebaseMessaging.getInstance().getToken()
                 .addOnSuccessListener(
-                        new OnSuccessListener<InstanceIdResult>() {
+                        new OnSuccessListener<String>() {
                             @Override
-                            public void onSuccess(InstanceIdResult instanceIdResult) {
-                                String instanceToken = instanceIdResult.getToken();
+                            public void onSuccess(String instanceIdResult) {
+                                String instanceToken = instanceIdResult;
                                 if (instanceToken != null) {
                                     Log.d(TAG, "Firebase token successfully generated at startup");
                                     SharedPrefsManager prefsManager = new SharedPrefsManager(getApplicationContext());
