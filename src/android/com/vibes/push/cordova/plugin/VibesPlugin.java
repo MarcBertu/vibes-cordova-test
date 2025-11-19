@@ -114,7 +114,7 @@ public class VibesPlugin extends CordovaPlugin {
             SharedPrefsManager prefsManager = new SharedPrefsManager(context);
             String pushToken = prefsManager.getStringData(FMS.TOKEN_KEY);
             if (pushToken == null) {
-                FirebaseInstallations.getId()
+                FirebaseInstallations.getInstance().getId()
                         .addOnSuccessListener(
                                 new OnSuccessListener<InstanceIdResult>() {
                                     @Override
@@ -316,7 +316,7 @@ public class VibesPlugin extends CordovaPlugin {
 
     private void initializeToken() {
         Log.d(TAG, "Triggering FirebaseInstanceId to generate Firebase token");
-        FirebaseInstallations.getId()
+        FirebaseInstallations.getInstance().getId()
                 .addOnSuccessListener(
                         new OnSuccessListener<InstanceIdResult>() {
                             @Override
