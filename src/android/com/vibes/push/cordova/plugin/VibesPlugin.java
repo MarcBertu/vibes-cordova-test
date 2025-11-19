@@ -26,7 +26,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.installations.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.apache.cordova.CallbackContext;
