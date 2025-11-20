@@ -25,7 +25,7 @@
     <content src="index.html" />
     <asset src="www/vibes.js" target="js/vibes.js" />
     <js-module name="Vibes" src="www/vibes.js">
-        <clobbers target="cordova.plugins.Vibes" />
+        <clobbers target="window.plugins.Vibes" />
     </js-module>
 
     <platform name="android">
