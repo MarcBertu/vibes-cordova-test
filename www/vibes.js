@@ -16,7 +16,21 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-var vibes = {
+
+// Empty constructor
+function Vibes() {}
+
+// Installation constructor that binds ToastyPlugin to window
+ToastyPlugin.install = function() {
+  if (!window.plugins) {
+    window.plugins = {};
+  }
+  window.plugins.Vibes = new Vibes();
+  return window.plugins.Vibes;
+};
+cordova.addConstructor(Vibes.install);
+
+var Vibes = {
 
     registerDevice: function (successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "VibesPlugin", "registerDevice", []);
@@ -60,4 +74,4 @@ var vibes = {
     
 };
 
-module.exports = vibes;
+module.exports = Vibes;
