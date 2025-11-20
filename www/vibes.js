@@ -21,7 +21,8 @@
 function Vibes() {}
 
 // Installation constructor that binds ToastyPlugin to window
-ToastyPlugin.install = function() {
+
+Vibes.install = function() {
   if (!window.plugins) {
     window.plugins = {};
   }
